@@ -47,12 +47,12 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@activity('Copy ECDC Data').output.pipelineReturnValue",
+						"value": "@activity('Lookup ECDC File List - test').output.value",
 						"type": "Expression"
 					},
 					"activities": [
 						{
-							"name": "Copy ECDC Data",
+							"name": "Copy ECDC Data 1",
 							"type": "Copy",
 							"dependsOn": [],
 							"policy": {
