@@ -47,7 +47,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@activity('Copy ECDC Data').output.value",
+						"value": "@activity('Copy ECDC Data').output.pipelineReturnValue",
 						"type": "Expression"
 					},
 					"activities": [
