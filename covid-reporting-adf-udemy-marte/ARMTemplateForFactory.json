@@ -21,7 +21,7 @@
 		},
 		"ls_http_opendata_ecdc_eu_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "@dataset().baseURL"
+			"defaultValue": "@{linkedService().baseURL}"
 		},
 		"tr_ingest_population_data_properties_typeProperties_scope": {
 			"type": "string",
@@ -84,12 +84,12 @@
 						"userProperties": [],
 						"typeProperties": {
 							"items": {
-								"value": "@activity('Copy ECDC Data').output.pipelineReturnValue",
+								"value": "@activity('Lookup ECDC File List - test').output.value",
 								"type": "Expression"
 							},
 							"activities": [
 								{
-									"name": "Copy ECDC Data",
+									"name": "Copy ECDC Data 1",
 									"type": "Copy",
 									"dependsOn": [],
 									"policy": {
@@ -397,7 +397,17 @@
 			"properties": {
 				"linkedServiceName": {
 					"referenceName": "ls_http_opendata_ecdc_eu",
-					"type": "LinkedServiceReference"
+					"type": "LinkedServiceReference",
+					"parameters": {
+						"baseURL": {
+							"value": "@dataset().baseURL",
+							"type": "Expression"
+						},
+						"relativeURL": {
+							"value": "@dataset().relativeURL",
+							"type": "Expression"
+						}
+					}
 				},
 				"parameters": {
 					"baseURL": {
@@ -413,7 +423,7 @@
 					"location": {
 						"type": "HttpServerLocation",
 						"relativeUrl": {
-							"value": "@dataset().relativeURL",
+							"value": "@{linkedService().relativeURL}",
 							"type": "Expression"
 						}
 					},
@@ -559,6 +569,14 @@
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
 			"properties": {
+				"parameters": {
+					"baseURL": {
+						"type": "string"
+					},
+					"relativeURL": {
+						"type": "string"
+					}
+				},
 				"annotations": [],
 				"type": "HttpServer",
 				"typeProperties": {
