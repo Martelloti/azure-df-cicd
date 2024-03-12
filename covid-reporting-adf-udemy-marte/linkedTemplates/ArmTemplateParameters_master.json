@@ -15,7 +15,7 @@
 			"value": "https://covidreportingdlmarte.dfs.core.windows.net/"
 		},
 		"ls_http_opendata_ecdc_eu_properties_typeProperties_url": {
-			"value": "https://raw.githubusercontent.com/"
+			"value": "@dataset().baseURL"
 		},
 		"tr_ingest_population_data_properties_typeProperties_scope": {
 			"value": "/subscriptions/f22bc6da-8bfd-4ddd-b33f-85c77afd9b62/resourceGroups/covid-reporting-udemy/providers/Microsoft.Storage/storageAccounts/covidreportingsamarte"
