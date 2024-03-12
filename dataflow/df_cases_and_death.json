@@ -9,7 +9,14 @@
 						"referenceName": "df_raw_cases_and_deaths",
 						"type": "DatasetReference"
 					},
-					"name": "source1"
+					"name": "CasesAndDeathSources"
+				},
+				{
+					"dataset": {
+						"referenceName": "ds_countrycode",
+						"type": "DatasetReference"
+					},
+					"name": "CountryLookup"
 				}
 			],
 			"sinks": [],
@@ -22,6 +29,9 @@
 				},
 				{
 					"name": "PivotCounts"
+				},
+				{
+					"name": "LookupCountry"
 				}
 			],
 			"scriptLines": [
@@ -38,8 +48,18 @@
 				"     ),",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false) ~> source1",
-				"source1 filter(continent == 'Europe' && not(isNull(country_code))) ~> FIlterEuropeOnly",
+				"     ignoreNoFilesFound: false) ~> CasesAndDeathSources",
+				"source(output(",
+				"          country as string,",
+				"          country_code_2_digit as string,",
+				"          country_code_3_digit as string,",
+				"          continent as string,",
+				"          population as integer",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> CountryLookup",
+				"CasesAndDeathSources filter(continent == 'Europe' && not(isNull(country_code))) ~> FIlterEuropeOnly",
 				"FIlterEuropeOnly select(mapColumn(",
 				"          country,",
 				"          country_code,",
@@ -60,7 +80,11 @@
 				"     pivotBy(indicator, ['confirmed cases', 'deaths']),",
 				"     count = sum(daily_count),",
 				"     columnNaming: '$V_$N',",
-				"     lateral: true) ~> PivotCounts"
+				"     lateral: true) ~> PivotCounts",
+				"PivotCounts, CountryLookup lookup(PivotCounts@country == CountryLookup@country,",
+				"     multiple: false,",
+				"     pickup: 'any',",
+				"     broadcast: 'auto')~> LookupCountry"
 			]
 		}
 	}
