@@ -47,7 +47,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@activity('Lookup ECDC File List').output.value",
+						"value": "@activity('Copy ECDC Data').output.value",
 						"type": "Expression"
 					},
 					"activities": [
