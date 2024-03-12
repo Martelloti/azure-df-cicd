@@ -1,0 +1,14 @@
+{
+	"name": "covid-reporting-adf-udemy-marte",
+	"properties": {
+		"globalConfigurations": {
+			"PipelineBillingEnabled": "true"
+		}
+	},
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "db5d5699-14c4-455b-b7eb-95a4a4dacb8b",
+		"tenantId": "22382148-2f18-43b4-acf6-f81a9487cba3"
+	}
+}
