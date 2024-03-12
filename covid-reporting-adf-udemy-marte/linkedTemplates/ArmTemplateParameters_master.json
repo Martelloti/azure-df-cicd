@@ -1,0 +1,30 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "covid-reporting-adf-udemy-marte"
+		},
+		"Is_ablob_covidreportingsa_connectionString": {
+			"value": ""
+		},
+		"ls_adls_covidreportingdl_accountKey": {
+			"value": ""
+		},
+		"ls_adls_covidreportingdl_properties_typeProperties_url": {
+			"value": "https://covidreportingdlmarte.dfs.core.windows.net/"
+		},
+		"ls_http_opendata_ecdc_eu_properties_typeProperties_url": {
+			"value": "https://raw.githubusercontent.com/"
+		},
+		"tr_ingest_population_data_properties_typeProperties_scope": {
+			"value": "/subscriptions/f22bc6da-8bfd-4ddd-b33f-85c77afd9b62/resourceGroups/covid-reporting-udemy/providers/Microsoft.Storage/storageAccounts/covidreportingsamarte"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
