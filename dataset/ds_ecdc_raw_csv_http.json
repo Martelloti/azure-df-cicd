@@ -5,6 +5,14 @@
 			"referenceName": "ls_http_opendata_ecdc_eu",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"baseURL": {
+				"type": "string"
+			},
+			"relativeURL": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
