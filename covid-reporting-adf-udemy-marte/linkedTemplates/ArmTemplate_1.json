@@ -17,13 +17,13 @@
 	},
 	"resources": [
 		{
-			"name": "[concat(parameters('factoryName'), '/pl_process_cases_and_deaths')]",
+			"name": "[concat(parameters('factoryName'), '/pl_process_hospital_admissions')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"activities": [
 					{
-						"name": "df_process_cases_and_deaths",
+						"name": "df_daily_hospital_admissions",
 						"type": "ExecuteDataFlow",
 						"dependsOn": [],
 						"policy": {
@@ -36,13 +36,15 @@
 						"userProperties": [],
 						"typeProperties": {
 							"dataflow": {
-								"referenceName": "df_cases_and_death",
+								"referenceName": "df_hospital_admissions",
 								"type": "DataFlowReference",
 								"parameters": {},
 								"datasetParameters": {
-									"CasesAndDeathSources": {},
-									"CountryLookup": {},
-									"CasesAndDeathSink": {}
+									"HospitalAdmissionsSource": {},
+									"LookUpCountryCodeDS": {},
+									"DimDateImport": {},
+									"SinkWeeklyData": {},
+									"SinkDailyData": {}
 								}
 							},
 							"staging": {},
